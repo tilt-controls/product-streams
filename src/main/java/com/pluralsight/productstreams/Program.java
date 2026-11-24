@@ -39,13 +39,16 @@ public class Program {
     private static List<Product> getProductsByCategory(List<Product> products, String category) {
         // STEP A (loop): make an empty list, loop through products, and add each one
         //   whose category matches (equalsIgnoreCase). Return the list.
-        List<Product> matchingProducts = new ArrayList<>();
-        for (Product product : products) {
-            if (product.getCategory().equalsIgnoreCase(category)) {
-                matchingProducts.add(product);
-            }
-        } return matchingProducts;
+//        List<Product> matchingProducts = new ArrayList<>();
+//        for (Product product : products) {
+//            if (product.getCategory().equalsIgnoreCase(category)) {
+//                matchingProducts.add(product);
+//            }
+//        } return matchingProducts;
         // STEP B (stream): products.stream(), then .filter(...), then .toList()
+        return products.stream()
+                .filter(product -> product.getCategory().equalsIgnoreCase(category))
+                .toList();
 
 //        return new ArrayList<>(); // replace this line
     }

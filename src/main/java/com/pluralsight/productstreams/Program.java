@@ -39,14 +39,21 @@ public class Program {
     private static List<Product> getProductsByCategory(List<Product> products, String category) {
         // STEP A (loop): make an empty list, loop through products, and add each one
         //   whose category matches (equalsIgnoreCase). Return the list.
+        List<Product> matchingProducts = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getCategory().equalsIgnoreCase(category)) {
+                matchingProducts.add(product);
+            }
+        } return matchingProducts;
         // STEP B (stream): products.stream(), then .filter(...), then .toList()
 
-        return new ArrayList<>(); // replace this line
+//        return new ArrayList<>(); // replace this line
     }
 
     // TASK 2: the total of every product's price
     private static BigDecimal getTotalInventoryValue(List<Product> products) {
         // STEP A (loop): start a total at BigDecimal.ZERO, and add each price with .add()
+
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .reduce(BigDecimal.ZERO, ...) to add them up
 

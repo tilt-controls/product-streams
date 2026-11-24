@@ -67,9 +67,15 @@ public class Program {
     // TASK 3: how many products are in one category
     private static long countProductsInCategory(List<Product> products, String category) {
         // STEP A (loop): a count that starts at 0, plus 1 for each match
+        int count = 0;
+        for (Product product : products) {
+            if (product.getCategory().equalsIgnoreCase(category)) {
+                count++;
+            }
+        } return count;
         // STEP B (stream): .filter(...), then .count()
 
-        return 0; // replace this line
+//        return 0; // replace this line
     }
 
     // TASK 4: a list of just the prices

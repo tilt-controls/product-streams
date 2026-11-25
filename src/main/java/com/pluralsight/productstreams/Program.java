@@ -35,6 +35,14 @@ public class Program {
         }
         System.out.println();
         System.out.println("Prices: " + getPrices(inventory));
+
+        // 6 (optional). The names of the products under a price
+        BigDecimal limit = new BigDecimal("50.00");
+        System.out.println("\nUnder $" + limit + ": " + getNamesUnder(inventory, limit));
+
+        // 7 (optional). Cheapest to most expensive
+        System.out.println("\n--- Cheapest first ---");
+        printProducts(getProductsByPrice(inventory));
     }
 
     // TASK 1: the products in one category
@@ -114,9 +122,31 @@ public class Program {
 //            System.out.println(product);
 //        }
         // STEP B: products.forEach(...) with a lambda
-        products.forEach(product -> System.out.println(product));
+        products.forEach(product -> System.out.println(product));}
 
-    }
+        // TASK 6 (optional): the names of the products under a price
+        private static List<String> getNamesUnder(List<Product> products, BigDecimal limit){
+            // STEP A (loop): an empty List<String>; add the name of each product whose price
+            //   is less than limit (compareTo)
+            List<String> matchingNames = new ArrayList<>();
+            for (Product product : products) {
+                if (product.getPrice().compareTo(limit) <= 0) {
+                    matchingNames.add(product.getName());
+                }
+            } return matchingNames;
+
+            // STEP B (stream): .filter(...), then .map(...) each product to its name, then .toList()
+
+//            return new ArrayList<>(); // replace this line
+        }
+
+        // TASK 7 (optional): the products from cheapest to most expensive
+        private static List<Product> getProductsByPrice(List<Product> products) {
+            // No loop for this one: sorting with a loop is a lot of work.
+            // STEP B (stream): .sorted(Comparator.comparing(...)), then .toList()
+
+            return new ArrayList<>(); // replace this line
+        }
 
     private static List<Product> getInventory() {
         List<Product> products = new ArrayList<>();

@@ -33,6 +33,8 @@ public class Program {
             System.out.println("\nMost expensive: $" + Collections.max(prices));
             System.out.println("Cheapest: $" + Collections.min(prices));
         }
+        System.out.println();
+        System.out.println("Prices: " + getPrices(inventory));
     }
 
     // TASK 1: the products in one category
@@ -56,13 +58,18 @@ public class Program {
     // TASK 2: the total of every product's price
     private static BigDecimal getTotalInventoryValue(List<Product> products) {
         // STEP A (loop): start a total at BigDecimal.ZERO, and add each price with .add()
-        BigDecimal totalValue = BigDecimal.ZERO;
-        for (Product product : products) {
-            totalValue = totalValue.add(product.getPrice());
-        }
-        return totalValue;
+//        BigDecimal totalValue = BigDecimal.ZERO;
+//        for (Product product : products) {
+//            totalValue = totalValue.add(product.getPrice());
+//        }
+//        return totalValue;
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .reduce(BigDecimal.ZERO, ...) to add them up
+       BigDecimal value = products.stream()
+                .map(product -> product.getPrice())
+                .reduce(BigDecimal.ZERO, (sum, price) -> sum.add(price));
+       return value;
+
 
 //        return BigDecimal.ZERO; // replace this line
     }
@@ -86,14 +93,17 @@ public class Program {
     // TASK 4: a list of just the prices
     private static List<BigDecimal> getPrices(List<Product> products) {
         // STEP A (loop): an empty List<BigDecimal>; add each product's price
-        List<BigDecimal> prices = new ArrayList<>();
-        for (Product product : products) {
-            prices.add(product.getPrice());
-        }
-        return prices;
+//        List<BigDecimal> prices = new ArrayList<>();
+//        for (Product product : products) {
+//            prices.add(product.getPrice());
+//        }
+//        return prices;
         // STEP B (stream, after Wednesday's demo): .map(...) each product to its price,
         //   then .toList()
-
+        List<BigDecimal> prices = products.stream()
+                .map(product -> product.getPrice())
+                .toList();
+        return prices;
 //        return new ArrayList<>(); // replace this line
     }
 
